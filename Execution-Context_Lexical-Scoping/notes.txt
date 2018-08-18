@@ -1,1 +1,82 @@
-Testing
+
+Lexical Environments
+    Is dealing with where you right some thing in your code.  
+    The order in which you write it matters.
+
+Objects
+    Name/Value pairs is a name that maps to a unqiue value.  This means your names
+    should be unique.  The name can be repeated in different execution contexts.
+
+    A object is a  collection of name/value pairs;
+
+Execution Contexts 
+    The execution context is a wrapper to manage your code.  By defualt,
+    the the exeuction context of your JavaScript is the global context.
+
+    Everytime you run a JavaScript file, the engine creates an execution
+    context for you.  
+
+    It creates two things for you
+    A Global object, which is the window obejct 
+    A special variable called this, which is the window object because
+    you are running the app in the browser.
+
+    If you are running JavaScript in another environment other than
+    the browser, the global object will not be the window.
+
+    Creating variables and function that are not within a function meaning
+    that they are in the global context are attached to the global 
+    object as a name/value pair.
+
+
+Creation
+
+   There are two phases in an execution context
+
+    Creation phase
+        Its sets up a memory space for variables and functions when
+        it parses your code.
+
+        It hoist your code by going through it and documenting variable
+        declarations and function declarations.  So, now those
+        variables and functions exists in memory before you code is 
+        executed line by line.
+
+        This happens before you code  begins to be executed line By
+        line.
+
+        For function declarations during the creation phase the entire
+        function is placed into memory.  This is why you invoke it before
+        you declare it works as intended.  Not for variable assignments;
+
+        All variables in JavaScript are intially set to undefined;
+
+    Exeuction Phase
+
+        During this phase variable assignments are performed
+
+Hoisting
+
+    Normally in other programming languages it executes code in
+    a from top to bottom.  So, if you try to invoke a function or
+    use a variable before declaring it, an error will occur.
+
+    It makes variables and functions available before their 
+    declarations;
+
+    Hoisting does not work with the let variable declarations
+    becuase variables are intially set to undefined.
+
+    You can invoke function declarations before you declare them 
+    with no issue.  For variable declaration with the var keyword,
+    if you reference you are going to get undefined.
+
+
+undefined
+    When a variable is undefined, it means that it has not set to 
+    a value.  You should never explicitly set a variable to undefined.
+
+    Undefined is a special value
+
+
+
