@@ -1,0 +1,42 @@
+Types in JavaScript
+
+    Dynamic Typing
+        You dont tell the engine what type of data a variable holds, it figures
+        during execution.  The value a variable can hold can change over time.
+
+    Static Typing
+        You tell the complier what type of data it should expect This
+        variable ahead of time.
+
+
+Primitive Types
+
+    Primitive Type: is a type of data that represents a single value, it is not
+    an object.  An object is a collection of name value pairs.
+
+    There a 6 primitive types in JavaScript
+        undefined: a value for a variable that has not been set.  The engine
+        sets variables to undefined by default;
+        null: a variable that has not been given a value and we set it to null
+        boolean: true or false value
+        number: There is only one type of number in JS, which is floating point
+        string: an array of characters or sequence or characters and both single
+        quotes or double quotes to represent a string
+        symbol: used in ES6 
+
+
+Operators
+
+    Is a function that is written differently.
+
+    Operators are really just functions.
+
+    In most cases operators take two paramters and return a single value.
+
+    Infix notation: the operator sets between the two parameters
+        3+4
+    Prefix
+        +34
+    Postfix
+    34+
+

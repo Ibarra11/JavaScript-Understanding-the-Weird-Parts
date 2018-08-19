@@ -1,8 +1,26 @@
-b();
-console.log(a);
+// b();
+// console.log(a);
 
-var a = 'Hello World!';
+// var a = 'Hello World!';
 
-function b(){
-    console.log('Called B!');
+// function b(){
+//     console.log('Called B!');
+// }
+
+
+
+// Variable environments
+
+
+function a(){
+    function  b(){
+        console.log(myVar);
+    }
+    var myVar = 2;
+    console.log(myVar);
+    b();
 }
+
+var myVar = 1;
+console.log(myVar);
+a();

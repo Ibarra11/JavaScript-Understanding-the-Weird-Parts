@@ -78,5 +78,111 @@ undefined
 
     Undefined is a special value
 
+    During the creation phase of the execution context the jS engine 
+    places in memory variable declarations and functions.  During this
+    phase all variables values will be set to undefines.  However, for
+    functions they will entirely be put into memory so they can be invoked.
+
+
+Single Threaded Synchronou Execution
+
+    Single Threaded means that one command is being executed at a time.
+    JavaScript behaves in a single threaded manner.
+
+    Synchronous means one at a time in order
+
+
+Function Invocation & The Execution Stack
+
+    Function invocation just means running a function
+
+    When you invoke a function, it creates a new execution context
+    and is placed on the execution stack.
+
+    The top item in the statck is the current execution context that
+    is running.
+
+    Once the function finishes, its execution context is popped off the 
+    stack.
+
+
+Functions, Context, and Variable Envrinoments
+
+    The variable environemtns is in relation to the execution context.
+
+    Every exection context has its own variable environment.
+
+    Scope where are we able to see the variable or access the variable.
+
+    Any variables declared withing a function only lives within that function.
+    It can not be accessed outside of it.
+
+
+The Scope Chain
+
+    When you an execution context is created the JavaScript engine
+    cretes a global object and a special variables called this.  Additionaly,
+    it also creates a reference to the the outer environment.
+
+    When you reference a variable in a execution context it is going to
+    look in its environment for the variable and if it does not find it 
+    looks in the outer environment for it.
+
+    Lexical Environment where something is physically written in your
+    code.
+
+    Scope in JavaScript is determined by where lexically or physically
+    the variable or function was decalred.
+
+    The outer environment of the execution context is dependent on 
+    its lexical environment.
+
+    Another way of thinking about scope is where was the function
+    or variable created with regard to the execution context.
+
+
+
+Scope, ES6 & let
+
+    Scope is a where a variable is available in your code.
+
+    Let is  a new way of declaring variables and is block scoped.
+
+    The let keyword is not hoisted like the var keyword.  If you try
+    to access it before it is declared, you will get an error.
+
+
+What about Asynchrounous callbacks
+
+    Asynchrounous: more than one at a time
+
+    Event Queue
+        Any events that want to be notified of is placed in the 
+        event queue.
+
+        The JavaScript engine looks at the event queue after the
+        execution stack is empty.
+
+        If the event requires a funciton that is placed in the 
+        exeuction context and then looks again at the event queue.
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
 
 
