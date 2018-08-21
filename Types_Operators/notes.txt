@@ -40,3 +40,118 @@ Operators
     Postfix
     34+
 
+
+Operator Precendence & Associativity
+
+    Operator Precedence: which operator function gets called first
+
+    The precedence is based on how high the number is in the precedence
+    chart
+
+    Associativity: What order operator function gets called in left to
+    right or right to left.
+
+    = is also an operator, but has low precedence
+
+    Operator is a special type of function
+
+    If the precedence is the same then associatity decides the order
+        10/2*5
+
+    The assignment operator is right associative and sets the value on 
+    the left equal to the value on the right and returns the value on 
+    the right.
+        var a = 4;
+        var b = a;
+            which then returns the value of a
+
+    () or grouping has the highest precedence
+
+Coercion
+
+    Converting a value from one type to another.  This is very common
+    in JavaScript because it is dynamically typed or weakly typed.
+    String => Number, true => undefined, null => number
+
+    Dynamically typed means that we dont define the datatype of variables
+    the JavaScript engine decides what datatype, it should have when 
+    it executes it.
+
+   The +  operator can do two things depending on the parameters.
+   If there are two strings, it concatenates them.  If there are two
+   numbers, it adds them.
+
+   If you add a string + number, the result is a string.  JavaScript
+   is going to coerce or change number to a string.
+
+   The JavaScript engine does implicit coercion with different datatypes.
+   Implicit coercion: the javascritp coerces on its own
+
+   Explicit coercion is we specifically change the one value to another
+    parseInt toString.
+
+    When dealing with different datatypes, the JavaScript engine is 
+    going to coerce one of those datatypes implicitly.
+
+
+Comparison Operators
+
+    The compariosn operator < > expect two numbers, so any other
+    datatype gets coerced to a number,
+
+    Boolean value true gets coerced to the value 1
+
+    Boolean value false gets coerced to the value 0
+
+    In some cases coercions are not possible.  For example,
+    trying to coerce undefined to a number will result in 
+    NaN.
+
+    What NaN means that it tried to convert a number, but it cant
+    be a number
+
+    When checking equality and you dont want the JavaScritp engine to
+    implicity coerce you can use the strict equality (===). So, it checks
+    value and datatype.  In other words, if the two values are not the 
+    same type then it will return false.
+
+    If you just use regular equality, the equality operator can 
+    coerce(==).
+
+
+Existence & Booleans
+
+    When converting a type to  boolean that lacks existence, it converts
+    to false;
+        Boolean(undefined)
+        Boolean(null)
+        Boolean("")
+
+    Anything within an if will attempt to convert it into a boolean
+
+
+Default Values
+
+    In JavaScript if you invoke a function that expects parameters and
+    dont pass any arguements, it doesn't care.
+
+    You can set default values in cases where you invoke a function
+    or call a function and dont pass any parameters.
+
+        ES5
+            function greet(name){
+                name = name || '<Your name here>'
+                console.log('Hello ' + name );
+            }
+        
+        ES6 function greet(name='No Name'){
+            console.log('Hello ' + name)
+        }
+    With || operator, it returns the value that can be coerced to true
+        undefined || 'Hello'
+    If you pass in two values that can be coerced to true, the or operator
+    will return the first one on the left.  Because its associativity is
+    left to right'
+
+
+
