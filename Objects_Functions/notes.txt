@@ -1,0 +1,135 @@
+Objects & the dot
+
+    Objects are collections of name/value pairs.  The values
+    can also be an object aswell.
+
+    Object can contain primitive properties, object property, and a 
+    function.  A function inside a object is refered to as a method.
+
+    THe object has references to the addresses of the propeties and 
+    methodson it.
+
+    Two ways of acessing propeties on an object
+        Dot notation
+            obj.property
+        bracket notation
+            obj['property']
+    
+    The dot operator or membor access and the Computed Memeber Acess or bracket notation are
+    functions.  They have high precedence.  They take the object look for the property.
+
+
+Objects and Object Literals
+
+    Object Literal: a way of creating an object, but with just curly braces
+    With object literals we can set the function up on line without having to manually
+    for every propety.
+    Whenever the JavaScript engine sees the curly braces it figues that you are trying
+    to create an object.
+    In other words, an object literal is just a shorthand way of creating an object.
+        var person = {
+            firstname: 'ALan Ibarra',
+             lastname: 'Ibarra' 
+        };
+
+        var person = new Object();
+        person.firstname = 'Alan Ibarra';
+        person['lastname'] =  'Ibarra';
+
+    
+    You can also create a new object with the constructor function
+        var person = new Object();
+
+
+Faking Namespaces
+
+    Namespace: a contaienr for variables and function
+
+    We use namespaces to keep variables and function with the same name seperate
+
+    JavaScript doesnt have namespaces
+
+    But in JavaScript, we can fake namespaces with objects.
+
+    The object gives us the ability to create a fake namespace.
+
+    Namespace collision when two things are named the same.
+
+JSON & Object Literals
+
+    JSON or JavaScript Object Notation looks very similar to object, however, there are
+    differences.  Any valid JSON is also valid object literal, but not the other way around
+        1. Properties must be wrapped around quotes
+        2. No traling commas
+    
+    We can convert an object to JSON with JSON.stringify(), which converts an object to JSON
+
+    We can conver a JSON object ot object literal with JSON.parse(), it coverts it to a 
+    JavaScript object.
+
+
+Functions are Objects
+
+    First Class Functions: everyting you do with other types you do with functions.
+
+    All functions are objects.
+
+    we can pass them into functions, return functions, and make functions on the fly,
+    and assign variables to them.
+
+
+    A function is a special type of object because all the features of a regual object,
+    but also has some extra features.
+
+    Since a function is an object, you can attach properties and methods.  You can even 
+    attach other functions.
+
+    It has two additonal properties 
+        - A name property, which is optional.  iF no name is provided it is a anonymous function
+        - code property, which contains the actual code we write in the funciton
+
+    So any code we write inside the function gets added as a special propety on the function
+    called code.
+
+    The code property is special because you an alos invoke or run the function
+
+    When you invoke the function thats when the whole execution context happens.
+
+    If you want to acces a property on a funtion then you have to use
+    the dot notation or bracket notation.  If you console.log the function
+    you will not see the object properites, by default it will display the 
+    code property, which is the code inside the funciotn.
+
+
+Function Statements and Function Expressions
+
+    Expression is a unit of code that results in a value 
+
+    IF it returns a value, it is an expression.
+
+    IF it doesnt return a value, then it is a statement.
+        In this case if is a statement, it doesnt return anything
+        the parenthes of the if statement is an expression because
+        it evaluates and returns a result.
+        if(i === 3)
+
+    Function Statements
+        This is a function statement becasue when it is evaluated, it 
+        doesn't return a result
+        function greet(){
+            console.log('hi');
+        }
+
+    Function Expression
+
+        var anaonymousGreet = function(){
+            console.log('hi');
+        }
+
+        Hoisting does not work with function expressions, it does work
+        with function statements.  The reaosn being is that the during
+        the creation phase of the execution contexts the variable is 
+        undefined and when you invoke it you are going to get an error.
+
+        During the creation phase all variables are set to undefined.
+        That is the reason why function expressions can not be undefined.
