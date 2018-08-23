@@ -35,3 +35,21 @@ function IsAnObject(){
 IsAnObject.type = 'Object';
 
 console.log(IsAnObject.type);
+
+
+var c = {
+    name: 'The c object',
+    log: function(){
+        var self = this;
+        console.log(self);
+        var ex = function(newName){
+            self.name= newName;
+        }
+        ex('ALan Ibarra')
+        console.log(self);
+    }
+}
+
+c.log();
+
+

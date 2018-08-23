@@ -121,7 +121,6 @@ Function Statements and Function Expressions
         }
 
     Function Expression
-
         var anaonymousGreet = function(){
             console.log('hi');
         }
@@ -133,3 +132,139 @@ Function Statements and Function Expressions
 
         During the creation phase all variables are set to undefined.
         That is the reason why function expressions can not be undefined.
+
+    
+By Value vs By reference
+    
+    Primitive values   
+        When you assign a variable to a primitve value.  The variable
+        contains the memory address of where the variable is located 
+        in memory.  With primitives if you assign a variable to
+        another variable that contains a primiitve value it makes a copy
+
+            In this example they are copies of each other, but sit in 
+            different places in memory.  Changing one doesn't affect the
+            other.
+            var a = 5;
+            var b = a;
+
+    By value: two seperate copies in memory
+
+    Primitive types are by value
+
+
+    Objects
+
+        With objects if you assign a variable equal to an objects property
+        you are linking the variable to the same location that property points;
+        Essentailly they both have the same memory reference.
+        var obj = {a:1}
+        var b = obj.a;
+        b = 5;
+
+        All objects are set by reference when setting them equal to variables
+        or passing them to functions.  That includes function because
+        functions are objects.
+
+        var c = {greeting: 'hi'};
+        THe javasvript engine sees this expression and sees that c
+        is an object, it then assigns d the same memory reference that
+        c contains to d.  In other words, both c and d reference the same
+        place in  memory.  Changin one affects the other.
+        var d = c;
+
+        Mutate: TO change something
+
+        immutable: means that it cant be changed
+
+        Even when you pass obj as an argumement to a function
+        , it can be mutated. because you are passing by reference.
+
+        The equal operator sets up new memory space (new address)
+
+        c = {greeting: ''}
+        In this the equals operator sees that the object literal is 
+        not a preexisitng object in memory, so it assigned a new 
+        memory address for it.
+
+        In sum, with obejcts if you are assigning a variable equal 
+        to an object in memory that already exist, it is going to set
+        the variable equal to same location memory as the object.  However,
+        if you set a variable equal to an object does not exist, it creates
+        a new memory space for that obejct and points the variable to it.
+
+
+Objects, Functions, and this
+
+    When a function is invoked, it creates a new exeuciton contexts
+
+    Each execution context has a variable environemnt where all the 
+    variables live.  It also has a link to the outer environment.  It;s
+    outer environment is determined lexically where it sets.
+
+    Each exectuion context creates the this keyword.
+
+    At global exection this points the global object, which is hte 
+    window.
+
+    When you invoke the function or call the code property on the function,
+    the this keyword inside function still points to the global object.
+
+    So inside the function we can attach variables to the global object
+    by doing something like this.newvariable = 'hello';  We then access
+    that variable in the global execution context liek so newvariable
+
+    So with object methods if you use the this keyword.  The this keyword
+    actually points to the object itself not the global object.  With
+    methods you can chagne the object properties within a method
+
+    var c = {
+        name: 'The c OBject',
+        log: function(){
+            this.name = 'YOu have been changed';
+            console.log(this)
+        }
+    }
+
+    Withing a method if you write another function.  The this keyword
+    no longer points to the object, it points to the global object;
+         var c = {
+        name: 'The c OBject',
+        log: function(){
+            this.name = 'YOu have been changed';
+            console.log(this)
+            var ex = function(){
+                console.log(this)
+            }
+        }
+    }
+
+
+Arrays Collections of Anythings
+
+    An array is a collection.  The items in the array can be 
+    of any type.
+
+    In most programming languages an array can hold a list of 
+    a certain type.
+
+    An array can contain many types and is not restricted to one 
+    type.
+
+    Two ways to create an array
+
+    var a = new Array();
+
+    var a [];
+
+
+
+
+
+
+
+
+
+
+
+
