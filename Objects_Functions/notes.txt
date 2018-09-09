@@ -248,7 +248,7 @@ Arrays Collections of Anythings
     In most programming languages an array can hold a list of 
     a certain type.
 
-    An array can contain many types and is not restricted to one 
+    In JavaScript, An array can contain many types and is not restricted to one 
     type.
 
     Two ways to create an array
@@ -256,6 +256,316 @@ Arrays Collections of Anythings
     var a = new Array();
 
     var a [];
+
+Arguements & Spread
+
+    When you execute a funciton a new execution context is created.  The JavaScript engine sets up a couple of things when 
+    a new execution environment is created.
+        - Variable Environment: holds the variables
+        - A link to the outer environment for the scope chain
+        - this keyword 
+        - For functions it also sets up arguements, which contains all the values you pass to a function
+
+    In JavaScript when you define a function with parameters and invoke that function and don't pass any
+    arguements to the function, it will not throw an error.  In most other programming languages this will throw
+    an error.  The reason it doesnt throw an error in JavaScript is because of hoisting.  The three params have 
+    already been given values before it was invoked, which was undefined.  In sum, this means that JavaScript does
+    not require you to pass arguements.
+        function example(param1, param2, param3){
+            console.log(param1+param2+param3)
+        };
+
+        example();
+
+    Within the function, we have access to the arguements variable, which contains all the values that were passed 
+    to the function.  It is arraylike, however, does not function like one.  You can access values of arguements
+    using the subscript, you can not like push or pop.
+
+    Spread operator: In ES6 you can use the spread operator to contain an array of arguements.  
+        function spreadEx(param1, param2, ...params){
+            params[0]= 'hello';
+            params[1] = 5;
+        }
+
+        speadEx(1,2,'hello',5,10,);
+
+
+Function Overloading
+
+    In JavaScript there is no function overloading.
+
+    Function Overloading is when you multiple functions with the same name however have differnt number of 
+    arguements.
+
+
+Syntax Parsers
+
+    The code we write isnt what the computer evaluates.  There is an intermediate step that happens that
+    converts your code to something that the computer can understand.
+
+Automatic Semicolon insertion
+
+    In core JavaScript semicolons are optional. The reason their optional is because the JavaScript places them
+    for you where they are expected.  A good idea would be to put your own semicolons, so you don't let JavaScript
+    do it for you. If the JavaScript engine sees a return and then a carriage return it places a semicolon on the
+    return. 
+    In this case the JavScript engine will place a semi colon on the return and not return the object like you expected
+        return
+        {
+
+        }
+
+Whitespace
+
+    Whitespace invisible charaters that create literal space in your written code.
+        carraige returns, tabs, spaces
+    In JavaScript, we can use white spce to clarify code and write comments.
+
+
+
+IIFE: Immediately Invoked Function Expression
+
+    Functions are special type of objects with two extra properties.  A code property and
+    a name property.  The name property is optional.
+
+    With functions, if it expects parameters and recieves none, it will not throw an error. THe
+    parameters will just be undefined.  During the creation phase the parameters are set to 
+    undefined.  We can access all arguemetns passed into the function with the arguements 
+    variabel, which is created in the execution context of the function.  It is arraylike, but
+    doesn't offer the same functionality.
+
+    Immediately invoked function expression
+        An immediately invoked function is a function that is invoked immediately after it is
+        created.
+        var greeting = function(name){
+            console.log('Hello ' + name);
+        }();
+
+        Instead of doing something like this
+            greeting();
+
+        With immediately invoked function expression we can pass in values
+        we invoke it.  Remember that greeting holds the returned value, which
+        is a string.  If you try to invoke JavaScript will throw an exception.
+        In other words greeting contains the invocation of the anonymous function,
+            var greeting = function(name){
+            return 'Hello ' + name;
+        }('Alan');
+
+
+    Function expression
+        A standalone funciton expression that is not assigned ot a variable
+        will throw an error.  The reason is because it expects it to be a function
+        statement. To trick javascript we jsut need to wrap the function expression
+        in parenetheses.
+        (function(name){
+                console.log('Hello' + name);
+        }('Alan'));
+
+        We can invoke the IIFE in two ways either outside the parentheses or
+        inside the parentehses, it works the same
+        (function(name){
+
+        }())
+
+        (function(name){
+
+        })() 
+
+
+IIFE's and Safe code
+
+    When the JavaScript engine encounters an IIFE, it places the function object in memory.
+    It then creates a new execution context for the anonymous function.  Any variables defined
+    within the IIFE are placed in the environemnt variables of the execution context.  So, any
+    variables you declare in the IIFE is not accessible in the global exection context.  
+    By defining variables within an IIFE, you are isolating those variables from any collision.
+    In other words it is safe.
+
+
+Understanding Closures
+
+    function greet(whattosay){
+        return function(name){
+            console.log(whattosay + ' ' + name);
+        }
+    }
+
+    var sayHi = greet('Hello');
+    sayHi('Alan Ibarra ');
+
+    When the JavaScript engine executes the greet function it creates a new execution context.
+    It places the parameters in the environment variables for that execution context.
+    Under most circumstances, any environment variables in a execution context are collected
+    by the garbage collector.
+
+    when you invoke sayHI it creates a new execution context.
+
+    An execution context is popped off the exeuciton stack either when the function returns
+    or reaches the outer } brace.
+
+    Every execution context has link to the outer environment. 
+
+    When the sayHI function looks for whattosay it goes down the scope chain.
+
+    Although, the greet functions have been popped of the execution stack, the sayHi 
+    execution context has a access to its enviorment variable memory space.
+
+    A closure is when you have an function that was invoked in a different execution context from where it was created.
+    The function even though invoked outside of its execution context where it was created still has access to the
+    variables and functions of the execution context from where it was created.
+
+    Free variables: are variables that are defined outside a function, but the function still has access to them
+
+
+
+Function Factories
+
+    Function Factory: is a function that creates a function.
+
+    With closures we can can create functions that perform different things.  So, essentialy you're function can have a variety
+    of different things it can do.
+
+    function makeGreeting(language){
+        return function(firstname, lastname){
+            if(language === 'en'){
+                console.log('Hello ' + firstname + ' '  + lastname);
+            }
+            else if(language === 'es'){
+                console.log('Hola ' + firstname + ' '  + lastname);
+            }
+        }
+    }
+
+    let englishGreeting = makeGreeting('en');
+    let spanishGreeting = makeGreeting('es');
+
+    Once you call the makeGreeting with your arguement and language is set equal to it is no longer accessible, which means you
+    can not update it, you can only read it.  Just rememeber closures enforce data privacy.
+
+    englishGreeting('Alan','Ibarra');
+    spanishGreeting('Alan','Ibarra');
+
+
+Closures and Callbacks
+
+    function sayHiLater(){
+
+        var greeting = 'hi';
+
+        setTimeout(function(){
+        console.log(greeting)
+    }, 3000);
+
+    }
+
+    Callback Function: a function you give to another function to be invoked when thh other function is finished
+
+
+
+
+Call, Apply, Bind
+
+    Three main parts to an execution context
+        1. Variable Environment: place in memory where all variables are stored
+        2. Outer environemnt: a link to the outer environment lexically
+        3. The this object, which refrences the global object in most cases
+
+
+    A function is a special type of object.  It has two special properties, it has the name property and the code property.
+    Additionaly, every function has available to it to it the methods call, apply, bind.  
+
+    var person = {
+        firstname: 'Alan',
+        lastname: 'Ibarra',
+        getFullName: function(){
+            var fullname = this.firstname + '' + this.lastname;
+            return fullname;
+        }
+    }
+
+    What call, apply, and bind gives us is the ability to control what the this object refrences
+
+
+    If I were to inkoke this function as it is is, the JavaScript engine will throw an error.  The reason is because
+    the this object references the global object and the global object does not have a get fullname method.  With call, apply, and bind
+    we can invoke this function and set the this keyword to point to what we want;
+    
+    var logName = function(param1, param2){
+        console.log('Logged: ' + this.getFullName());
+    }
+
+
+    bind method creates a new function and when invoked sets the this keyword equal to the value passed.  Bind does not
+    execute the function.
+    logName.bind(person)();
+
+    The call method invokes the function and sets the this keyword at the same time
+    So, know when I invoke logName if there any instances of this, it will reference the person object.
+    logName.call(person, 'ex1', 'ex2');
+
+    The apply method does exactly the same thing as the call method, accept that it wants arguements in an array,
+    logName.apply(person, ['en', 'es' ])
+
+
+
+    Function borrowing
+    
+    With bind, call, and apply we can use methods of other objects.  In this example the properties are the same, but we are
+    using a  method from a different object.
+
+    var person2 = {
+        firstname: 'jane',
+        lastname: 'doe'
+    }
+
+    person.getFullName.apply(person2)
+
+
+
+    Funciton Currying
+
+    funciton multiply(a,b){
+        return a*b;
+    }
+
+    So, when you use .bind, it creates a new function that is a  copy of the function with the this keyword set.  Now, if you 
+    pass any arguements in the .bind, it sets the parameters of this new copied function. In this case bind is permenately setting
+    the values.  So anytime you invoke mulitply by two a will always equal the value 2;
+
+    With bind we can create functions with parameters set permanently.
+
+    var multiplyByTwo = multiply.bind(this,2);
+    
+
+    
+
+
+
+
+
+
+    
+    
+    
+
+
+
+    
+
+
+
+
+
+        
+        
+
+
+
+    
+
+    
+
 
 
 

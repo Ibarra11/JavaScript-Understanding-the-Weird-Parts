@@ -53,3 +53,36 @@ var c = {
 c.log();
 
 
+
+// Immediately Invoked Function expression
+
+var greeting = function(name){
+    return 'hi ' + name;
+}('alan');
+console.log(greeting);
+
+
+(function(name){
+    let greeting = 'Hello ';
+    console.log(greeting + name);
+}('ALan Ibarra'));
+
+
+function buildFunctions(){
+    var arr = [];
+
+    for(var i = 0; i < 3; i++){
+        arr.push(function(){
+            console.log(i);
+        })
+    }
+
+    return arr;
+}
+
+var fs = buildFunctions();
+fs[0]();
+fs[1]();
+fs[2]();
+
+
