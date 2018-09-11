@@ -536,9 +536,148 @@ Call, Apply, Bind
     With bind we can create functions with parameters set permanently.
 
     var multiplyByTwo = multiply.bind(this,2);
+
+
+    Function Currying: creating a copy of a function but with some preset parameters
     
 
+
+Functional programming
+
+    Functional Programming works because of first class functions.  We can use that
+    to our advantage and create flexible function.  For example, this mapForEach function
+    takes an array and manipulates every element in the array and returns it.  The maniplulation
+    is contigent on the funciton passed in.  So, we can pass in a varitey of functions and 
+    different outputs.
+
+    Also, try to stay away from mutatating data.
+
+    function mapForEach(arr, fn){
+        var newArr = [];
+        for(var i = 0; i < arr.length; i++){
+            newArr.push(fn(arr[i])
+        }
+        return newArr;
+    }
+
+    var arr1= [1,2,3];
+    var arr2 = mapForEach(arr1, function(item){
+        return item * 2;
+    })
+
+
+
+    Lodash is an example of functional programming
+
+
+
+
+
+Classical Inheritance vs Prototypal Inheritance
+
+    Inheritance: one object gets access to the methods and properties and methods of another object.
+
+    Classical Inheritance:
+        Is how inheritance normally has been done.  Java, C# and many otheres use classical inheritance.
     
+    Prototypal Inheritance:
+        It's much more simple than classical inheritance.  
+
+
+
+Understanding The Prototype
+
+    All objects in JavaScript have a prototype property.  Including functions aswell.
+
+    The prototype property is just a reference to an object.
+
+    Each object can have a prototype.  There might be multilevel depth of prototype properties.
+
+    And if the prototype property has any methods or properties the object can access them.
+
+    Other object can share the same prototype by pointing or referencing the same prototype property.
+
+    It is possible to manipulate or set the prototype property, however, it is not reccomended to do so because
+    it will impact performance negatively.
+
+    In the situation where the object and its prototype property contain the same property or method, the objects  
+    own property or method takes precedence.  Because when you reference or method, it first looks for it on the object
+    and then proceeds to go down the prototype chain.
+
+
+    PROTOTYPE CHAIN
+
+    When you reference a property or method of an object, it looks for it initally in the object.  If it doesn't find the 
+    method or property it looks at the prototype for it.  If it finds it in the prototype property it gets the value. You can 
+    multiple prototype properties, so it will keep on looking for the property down these prototype properties, and hence the 
+    term prototype chain.
+
+    DIFFERENCE BETWEEN PROTOTYPE CHAIN AND SCOPE CHAIN
+
+    The scope chain is in relation to where a variable is accessible.
+
+    The prototype chain is in relation to where we have access to a property or method.
+
+
+    DON'T EVER MANIPULATE THE PROTOTYPE PROPERTY EVER
+
+    var person = {
+        firstname: 'default',
+        lastname: 'default',
+        getFullName: function(){
+            return this.firstname + ' ' + this.lastname
+        }
+    }
+
+    var john = {
+        firstname: 'John',
+        lastname: 'Doe'
+    }
+
+    john.__proto__ = person;
+
+
+
+
+Everything Is An Object Or a Primitive
+
+    By default, all objects contain a proto property.
+
+    var a = {};
+    var b = function(){};
+    var c = [];
+
+    The base object is the property in the prototype chain and every single object has a base object.
+
+        a.__proto__ = Object {}
+
+        b.__proto__ = function Empty(){}
+
+        c.__proto__ = []
+
+
+    BIND, CALL, APPLY
+
+    As, was previously mentioned all functions have available to them the bind, call, and apply methods.  The reason being is because
+    of the prototype property.  Each function has a prototype with these methods.
+
+
+    ARRAYS 
+
+    When we create an array, the array contains a prototype property that contains the method that we use like push, pop, map.
+    We dont't define these methods, but we can use them because there on the prototype property.
+
+
+Reflection and Extend
+
+    Reflection: An object can look at itself, listing and changing its properties and methods.
+
+    
+
+
+
+
+
 
 
 
