@@ -54,3 +54,5 @@ Built in Function Constructors
 
     String
         var a = new String('Alan');
+
+Dangerous Aside Built in Function 
