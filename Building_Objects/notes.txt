@@ -1,0 +1,56 @@
+
+Function Constructors & The New keyword
+
+    Function constructors are a way  to build objects.
+    Were building via invoking a function
+    A function constructor is denoted by the function name being capitalized
+
+    function Person(firstname, lastname){
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+
+    The new keywords is actually an operator.
+    The new operator first creates an empty object and then invokes the function.
+    When you invoke the function it creates a new execution context.
+    With that exectuion context you have the this keyword.  In most cases, the this keyword usually points to the global
+    object.  But, the new operator makes it so that the this keyword refrences the newly created empty object.  Any properties or methods
+    defined in the function are actually added to the empty object.
+    One thing to remember with function constructors is that you should return a value.  By default, it is going to return the 
+    newly created object,  but if you return a value it is going to return that value and not thw object.
+
+
+    var john = new Person('Jane', 'Doe');
+
+
+Function Constructors and Prototypes
+
+    Every function in JavaScript has a prototype property that is empty except for function constructors.
+
+    The prototype property is not the prototype of the function.  It is the prototype of the objects created through the 
+    function constructor.  So all object created through the function constructor prototype our set by the functions prototype's
+    property. Alternatively, instead of adding methods or the functions prototype we can just add in the function constructor 
+    themselves.  However, it is going to be more resource intensive.  So, instead of every object having a copy of a method you can
+    just add it to the prototype. It is much more efficient to put methods on the prototype.
+
+    Person.prototype.getFullName = function(){
+        return this.firstname + ' ' + this.lastname;
+    }
+    
+
+Dangerous Aside New & Functions
+
+    The new keyword is imperative with function constructors. If you omit them, the function constructor will not return an object
+    it will return undefined.
+
+
+Built in Function Constructors
+
+    Although, it may look like we are creating primitives.  We are actually creating objects.
+
+    Numbers
+        var a = new Number(3);
+
+    String
+        var a = new String('Alan');
